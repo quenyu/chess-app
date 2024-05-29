@@ -66,3 +66,11 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.white {
+  background-color: #f6f6f6;
+}
+
+.black {
+  background-color: #212121;
+}
