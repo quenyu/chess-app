@@ -7,6 +7,8 @@ type Props = {
 
 export const CellComponent = ({ cell }: Props) => {
   return (
-    <div className={`${styles.cell} ${cell.color}`}></div>
+    <div className={`${styles.cell} ${cell.color}`}>
+      {cell.figure?.logo && <img src={cell.figure.logo} alt="logo" />}
+    </div>
   )
 }

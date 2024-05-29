@@ -5,3 +5,9 @@
     align-items: center;
     justify-content: center;
 }
+
+.cell img {
+    width: 52px;
+    height: 52px;
+    position: relative;
+}
