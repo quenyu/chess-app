@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 import { Board } from './models/Board'
 
 export function App() {
-  const [board, setBoard] = useState(new Board())
+  const [board, setBoard] = useState<Board>(new Board())
 
   useEffect(() => {
     restart()

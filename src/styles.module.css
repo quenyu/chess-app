@@ -5,10 +5,3 @@
     align-items: center;
     justify-content: center;
 }
-
-.white,
-.black {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
