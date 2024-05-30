@@ -1,7 +1,23 @@
-.app_wrapper {
+.appWrapper {
     min-height: 100vh;
-    min-width: 100vw;
     display: flex;
+    flex-direction: column;
+    text-align: center;
     align-items: center;
     justify-content: center;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 3rem;
+}
+
+@media (max-width: 640px) {
+    .app {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 24px;
+        grid-row-gap: 24px;
+    }
 }

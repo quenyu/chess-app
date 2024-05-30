@@ -4,3 +4,27 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.gameContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.appTitle {
+    font-size: 2.75rem;
+    margin: 1rem 0.25rem;
+}
+
+.currentPlayerTitle {
+    color: #838383e4;
+}
+
+@media (max-width: 640px) {
+    .gameContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        grid-area: 1 / 1 / 2 / 5;
+    }
+}

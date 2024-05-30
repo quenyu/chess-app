@@ -26,9 +26,20 @@ export class Cell {
     this.figure.cell = this
   }
 
+  addEatenFigure(figure: Figure) {
+    if (figure.color === Colors.BLACK) {
+      this.board.eatenBlackFigures.push(figure)
+    } else {
+      this.board.eatenWhiteFigures.push(figure)
+    }
+  }
+
   moveFigure(target: Cell) {
     if (this.figure && this.figure?.canMove(target)) {
       this.figure.moveFigure(target)
+      if (target.figure) {
+        this.addEatenFigure(target.figure)
+      }
       target.setFigure(this.figure)
       this.figure = null
     }

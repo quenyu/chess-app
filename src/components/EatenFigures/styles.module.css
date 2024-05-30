@@ -1,0 +1,26 @@
+.eatenFigures {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+/* 
+.leftEatenBlock {
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+.rightEatenBlock {
+    grid-area: 2 / 3 / 3 / 5;
+}
+
+@media (max-width: 640px) {
+    .leftEatenBlock {
+        grid-area: 2 / 1 / 3 / 3;
+        height: 100%;
+    }
+
+    .rightEatenBlock {
+        grid-area: 2 / 3 / 3 / 5;
+        
+        height: 100%;
+    }
+} */
