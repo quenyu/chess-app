@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Player } from "../../models/Player";
 import { Colors } from "../../models/Colors";
-import styles from './styles.module.css'
+import styles from './styles.module.css';
 
 type Props = {
   restart: () => void;
@@ -11,7 +11,9 @@ type Props = {
 export const Timer = ({ restart, currentPlayer }: Props) => {
   const [whiteTime, setWhiteTime] = useState<number>(300);
   const [blackTime, setBlackTime] = useState<number>(300);
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const timer = useRef<null | ReturnType<typeof setInterval>>(null);
+  const winnerTeam = whiteTime <= 1 ? "Black" : "White";
 
   useEffect(() => {
     if (currentPlayer) {
@@ -26,11 +28,25 @@ export const Timer = ({ restart, currentPlayer }: Props) => {
   }, [currentPlayer]);
 
   const decrementWhiteTime = () => {
-    setWhiteTime(prev => prev - 1);
+    setWhiteTime(prev => {
+      if (prev <= 1) {
+        clearInterval(timer.current!);
+        setModalOpen(true);
+        return 0;
+      }
+      return prev - 1;
+    });
   };
 
   const decrementBlackTime = () => {
-    setBlackTime(prev => prev - 1);
+    setBlackTime(prev => {
+      if (prev <= 1) {
+        clearInterval(timer.current!);
+        setModalOpen(true);
+        return 0;
+      }
+      return prev - 1;
+    });
   };
 
   const startTimer = () => {
@@ -42,19 +58,36 @@ export const Timer = ({ restart, currentPlayer }: Props) => {
     timer.current = setInterval(callback, 1000);
   };
 
-  const handleBtnClick = () => {
+  const handleRestart = () => {
     setBlackTime(300);
     setWhiteTime(300);
     restart();
+    setModalOpen(false);
   };
 
+  const handleModalOverlay = () => {
+    setModalOpen(false)
+  }
+
   return (
-    <div className={styles.timerWrapper}>
-      <button onClick={handleBtnClick}>Restart Game</button>
-      <div>
-        <h4>White - {whiteTime}</h4>
-        <h4>Black - {blackTime}</h4>
+    <>
+      <div className={styles.timerWrapper}>
+        <button onClick={handleRestart}>Restart Game</button>
+        <div>
+          <h4>White - {whiteTime}</h4>
+          <h4>Black - {blackTime}</h4>
+        </div>
       </div>
-    </div>
+      {isModalOpen && (
+        <>
+          <div onClick={handleModalOverlay} className={styles.modalOverlay} />
+          <div className={styles.modal}>
+            <h2>Time's Up!</h2>
+            <p>{winnerTeam} is won</p>
+            <button onClick={handleRestart}>Try Again</button>
+          </div>
+        </>
+      )}
+    </>
   );
 };
