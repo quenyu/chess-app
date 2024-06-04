@@ -1,23 +1,40 @@
 .appWrapper {
-    min-height: 100vh;
+    height: 100vh;
+    min-width: 550px;
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
-.app {
+.appTitle {
+    font-size: 2.75rem;
+    margin: 1rem 0.25rem;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.subItemsBoard {
     display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 3rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem
 }
 
-@media (max-width: 640px) {
-    .app {
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        grid-column-gap: 24px;
-        grid-row-gap: 24px;
+@media (max-width: 1024px) {
+    .appTitle {
+        font-size: 2.25rem;
+        margin: 1rem 0.25rem;
+    }
+
+    .mainContainer {
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
     }
 }

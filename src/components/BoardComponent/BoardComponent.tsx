@@ -43,11 +43,6 @@ export const BoardComponent = ({ board, setBoard, currPlayer, swapPlayer }: Prop
 
   return (
     <div className={styles.gameContainer}>
-      <h1 className={styles.appTitle}>
-        Current step by <span className={styles.currentPlayerTitle}>
-          {currPlayer?.color.match(/White|Black/g)}
-        </span>
-      </h1>
       <div className={styles.board}>
         {board.cells.map((row, index) => (
           <React.Fragment key={index}>

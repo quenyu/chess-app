@@ -5,6 +5,7 @@ import { Board } from './models/Board'
 import { Player } from './models/Player'
 import { Colors } from './models/Colors'
 import { EatenFigures } from './components/EatenFigures/EatenFigures'
+import { Timer } from './components/Timer/Timer'
 
 export function App() {
   const [board, setBoard] = useState<Board>(new Board())
@@ -30,23 +31,33 @@ export function App() {
 
   return (
     <div className={styles.appWrapper}>
-      <div className={styles.app}>
-        <EatenFigures
-          title="Black"
-          figures={board.eatenBlackFigures}
-          // className={styles.leftEatenBlock}
-        />
+      <h1 className={styles.appTitle}>
+        Current step by <span className={styles.currentPlayerTitle}>
+          {currPlayer?.color.match(/White|Black/g)}
+        </span>
+      </h1>
+      <div className={styles.mainContainer}>
         <BoardComponent
           board={board}
           setBoard={setBoard}
           currPlayer={currPlayer}
           swapPlayer={swapPlayer}
         />
-        <EatenFigures
-          title="White"
-          figures={board.eatenWhiteFigures}
-          // className={styles.rightEatenBlock}
-        />
+
+        <div className={styles.subItemsBoard}>
+          <Timer
+            restart={restart}
+            currentPlayer={currPlayer}
+          />
+          <EatenFigures
+            title="White"
+            figures={board.eatenWhiteFigures}
+          />
+          <EatenFigures
+            title="Black"
+            figures={board.eatenBlackFigures}
+          />
+        </div>
       </div>
     </div>
   )
